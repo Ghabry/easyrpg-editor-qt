@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.16...3.20 FATAL_ERROR)
 if(POLICY CMP0091)
 	cmake_policy(SET CMP0091 NEW) # Support MSVC_RUNTIME_LIBRARY
 endif()
@@ -629,6 +629,9 @@ set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "org.easyrpg.editor")
 
 # Dependencies
 find_package(Qt5 REQUIRED NO_MODULE COMPONENTS Core Widgets Multimedia Gui Svg Quick QuickControls2)
+find_package(ECM REQUIRED NO_MODULE)
+list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+find_package(KF5 REQUIRED COMPONENTS Kirigami2)
 find_package(ZLIB REQUIRED)
 # liblcf
 option(EDITOR_BUILD_LIBLCF "Instead of detecting liblcf the liblcf repository is cloned into lib/liblcf and built together with the Player. This is convenient for development" OFF)
@@ -672,6 +675,7 @@ target_link_libraries(${PROJECT_NAME}
 	ZLIB::ZLIB
 	Qt5::Widgets Qt5::Gui Qt5::Core Qt5::Multimedia Qt5::Svg
 	Qt5::QSvgIconPlugin Qt5::Quick Qt5::Qml
+	KF5::Kirigami2
 )
 
 # Executable
@@ -707,7 +711,10 @@ set_target_properties(${EXE_NAME} PROPERTIES
 )
 
 # Add resources
-target_sources(${EXE_NAME} PRIVATE "resources/Resources.qrc")
+target_sources(${EXE_NAME} PRIVATE
+	"resources/Resources.qrc"
+	"src/ui/Ui.qrc"
+)
 
 if(WIN32)
 	target_sources(${EXE_NAME} PRIVATE "resources/Resources.rc")

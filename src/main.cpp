@@ -19,15 +19,28 @@
 #include "ui/main_window.h"
 #include "ui/event/event_page_widget.h"
 #include <QApplication>
+#include <QQmlApplicationEngine>
 #include <QTimer>
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
-	a.setApplicationName("EasyRPG Editor");
-	a.setOrganizationName("EasyRPG");
-	a.setOrganizationDomain("easyrpg.org");
-	MainWindow w;
+	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+	QApplication app(argc, argv);
+	QCoreApplication::setOrganizationName(QStringLiteral("EasyRPG"));
+	QCoreApplication::setOrganizationDomain(QStringLiteral("easyrpg.org"));
+	QCoreApplication::setApplicationName(QStringLiteral("Editor"));
+
+	QQmlApplicationEngine engine;
+
+	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+	if (engine.rootObjects().isEmpty()) {
+		return -1;
+	}
+
+	return app.exec();
+
+	/*MainWindow w;
 	// FIXME: SplashScreen disabled for now, this imposed a 6s startup delay due to timers...
 	//SplashDialog s(&w);
 	//s.show();
@@ -36,5 +49,5 @@ int main(int argc, char *argv[])
 	w.LoadLastProject();
 	w.show();
 
-	return a.exec();
+	return a.exec();*/
 }
