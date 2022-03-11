@@ -19,9 +19,16 @@
 #include "ui/main_window.h"
 #include "ui/event/event_page_widget.h"
 #include <QApplication>
+#include <QQmlContext>
 #include <QQmlApplicationEngine>
 #include <QLoggingCategory>
 #include <QTimer>
+
+#include "model/project.h"
+#include "model/project_data.h"
+#include "binding/database.h"
+
+#include "ui/viewer/faceset_painted_item.h"
 
 int main(int argc, char *argv[])
 {
@@ -35,15 +42,32 @@ int main(int argc, char *argv[])
 
 	QQmlApplicationEngine engine;
 
-	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+	qmlRegisterType<FaceSetPaintedItem>("org.easyrpg.viewer", 1, 0, "FaceSetPaintedItem");
+
+	auto p = Project::load("/home/gabriel/Programmierung/easyrpg/easyrpg-testgame/TestGame-2000");
+	p->loadDatabaseAndMapTree();
+
+	QQmlContext* ctx = engine.rootContext();
+
+	//QVariant v(QVariant::fromValue<QObject *>(p->projectData().binding()));
+	//auto* bla = v.value<QObject*>();
+
+	ProjectBinding* b = new ProjectBinding(p->projectData());
+
+	ctx->setContextProperty("project", b);
+	//ctx->setContextProperty("actor", &am);
+
+	engine.load(QUrl(QStringLiteral("qrc:/MainWindow.qml")));
 
 	if (engine.rootObjects().isEmpty()) {
 		return -1;
 	}
 
-	return app.exec();
+	app.exec();
 
-	/*MainWindow w;
+	return 0;
+#if 0
+	MainWindow w;
 	// FIXME: SplashScreen disabled for now, this imposed a 6s startup delay due to timers...
 	//SplashDialog s(&w);
 	//s.show();
@@ -52,5 +76,6 @@ int main(int argc, char *argv[])
 	w.LoadLastProject();
 	w.show();
 
-	return a.exec();*/
+	return app.exec();
+#endif
 }
