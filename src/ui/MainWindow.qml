@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15 as Controls
 import QtQuick.Layouts 1.15
 import org.kde.kirigami 2.15 as Kirigami
+import "./database" as Database
 
 Kirigami.ApplicationWindow {
 	// ID provides unique identifier to reference this element
@@ -12,9 +13,7 @@ Kirigami.ApplicationWindow {
 	property var db
 
 	// Initial page to be loaded on app load
-	pageStack.initialPage: Text {
-		text: `Hello World from ${db.actors.get(1).name}!`
-	}
+	pageStack.initialPage: Database.ActorWidget {}
 
 	Component.onCompleted: {
 		db = project.database

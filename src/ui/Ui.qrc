@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>MainWindow.qml</file>
+        <file>database/ActorWidget.qml</file>
+        <file>database/DatabaseSplitWidget.qml</file>
     </qresource>
 </RCC>

@@ -591,6 +591,8 @@ set(EDITOR_SOURCES
 )
 
 list(APPEND EDITOR_SOURCES
+	src/ui/database/ActorWidget.qml
+	src/ui/database/DatabaseSplitWidget.qml
 	src/ui/MainWindow.qml
 )
 
