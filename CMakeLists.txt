@@ -589,6 +589,11 @@ set(EDITOR_SOURCES
 	src/ui/viewer/stat_curve_graphics_item.cpp
 	src/ui/viewer/stat_curve_graphics_item.h
 )
+
+list(APPEND EDITOR_SOURCES
+	src/ui/MainWindow.qml
+)
+
 add_library(${PROJECT_NAME} STATIC ${EDITOR_SOURCES})
 
 # Include directories
