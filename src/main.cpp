@@ -20,6 +20,7 @@
 #include "ui/event/event_page_widget.h"
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include <QLoggingCategory>
 #include <QTimer>
 
 int main(int argc, char *argv[])
@@ -29,6 +30,8 @@ int main(int argc, char *argv[])
 	QCoreApplication::setOrganizationName(QStringLiteral("EasyRPG"));
 	QCoreApplication::setOrganizationDomain(QStringLiteral("easyrpg.org"));
 	QCoreApplication::setApplicationName(QStringLiteral("Editor"));
+
+	QLoggingCategory::setFilterRules(QStringLiteral("qt.qml.binding.removal.info=true"));
 
 	QQmlApplicationEngine engine;
 

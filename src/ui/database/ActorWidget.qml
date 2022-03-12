@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15 as Controls
 import QtQuick.Layouts 1.15
 import org.kde.kirigami 2.15 as Kirigami
+import '../controls' as RpgControls
 
 DatabaseSplitWidget {
 	model: project.database.actors
@@ -11,43 +12,25 @@ DatabaseSplitWidget {
 
 		Kirigami.FormLayout {
 			wideMode: true
-			Controls.TextField {
-				Kirigami.FormData.label: "Name:"
-				text: object.name
-
-				onTextChanged: {
-					object.name = text
-				}
+			RpgControls.TextField {
+				label: "Name:"
+				binding: "name"
 			}
-			Controls.TextField {
-				Kirigami.FormData.label: "Title:"
-				text: object.title
-
-				onTextChanged: {
-					object.title = text
-				}
+			RpgControls.TextField {
+				label: "Title:"
+				binding: "title"
 			}
 			Kirigami.Separator {
 				Kirigami.FormData.label: "Section Title"
 				Kirigami.FormData.isSection: true
 			}
-			Controls.CheckBox {
-				Kirigami.FormData.label: "Two-handed"
-				checked: object.two_weapon
-
-				onCheckedChanged: {
-					object.two_weapon = checked
-				}
+			RpgControls.CheckBox {
+				label: "Two-handed"
+				binding: "two_weapon"
 			}
-			Controls.SpinBox {
-				Kirigami.FormData.label: "Index"
-				value: object.character_index
-
-				onValueChanged: {
-					object.character_index = value
-
-					charsetCanvas.refresh()
-				}
+			RpgControls.SpinBox {
+				label: "Index:"
+				binding: "character_index"
 			}
 			Controls.ComboBox {
 				id: combo
@@ -67,7 +50,5 @@ DatabaseSplitWidget {
 				onCurrentIndexChanged: console.log("idx: " + currentIndex)
 			}
 		}
-
-		Component.onCompleted: console.log(`Blub ${obj}`)
 	}
 }

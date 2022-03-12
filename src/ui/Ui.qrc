@@ -3,5 +3,8 @@
         <file>MainWindow.qml</file>
         <file>database/ActorWidget.qml</file>
         <file>database/DatabaseSplitWidget.qml</file>
+        <file>controls/TextField.qml</file>
+        <file>controls/CheckBox.qml</file>
+        <file>controls/SpinBox.qml</file>
     </qresource>
 </RCC>

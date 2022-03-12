@@ -591,6 +591,9 @@ set(EDITOR_SOURCES
 )
 
 list(APPEND EDITOR_SOURCES
+	src/ui/controls/CheckBox.qml
+	src/ui/controls/SpinBox.qml
+	src/ui/controls/TextField.qml
 	src/ui/database/ActorWidget.qml
 	src/ui/database/DatabaseSplitWidget.qml
 	src/ui/MainWindow.qml
