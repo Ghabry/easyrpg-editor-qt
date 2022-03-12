@@ -3,6 +3,7 @@ import QtQuick.Controls 2.15 as Controls
 import QtQuick.Layouts 1.15
 import org.kde.kirigami 2.15 as Kirigami
 import '../controls' as RpgControls
+import '../viewer' as Viewer
 
 DatabaseSplitWidget {
 	model: project.database.actors
@@ -49,6 +50,10 @@ DatabaseSplitWidget {
 				}
 				onCurrentIndexChanged: console.log("idx: " + currentIndex)
 			}
+		}
+		Viewer.FaceSetViewer {
+			name: object.face_name
+			index: object.face_index
 		}
 	}
 }

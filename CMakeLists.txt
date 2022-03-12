@@ -584,6 +584,8 @@ set(EDITOR_SOURCES
         src/ui/viewer/charset_graphics_item.h
 	src/ui/viewer/faceset_graphics_item.cpp
 	src/ui/viewer/faceset_graphics_item.h
+	src/ui/viewer/faceset_painted_item.cpp
+	src/ui/viewer/faceset_painted_item.h
 	src/ui/viewer/rpg_graphics_view.cpp
 	src/ui/viewer/rpg_graphics_view.h
 	src/ui/viewer/stat_curve_graphics_item.cpp
@@ -596,6 +598,7 @@ list(APPEND EDITOR_SOURCES
 	src/ui/controls/TextField.qml
 	src/ui/database/ActorWidget.qml
 	src/ui/database/DatabaseSplitWidget.qml
+	src/ui/viewer/FaceSetViewer.qml
 	src/ui/MainWindow.qml
 )
 

@@ -44,6 +44,10 @@ public:
 		return m_tree_model;
 	}
 
+	ProjectData& projectData() {
+		return m_project_data;
+	}
+
 private:
 	ProjectData& m_project_data;
 

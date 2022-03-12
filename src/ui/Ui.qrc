@@ -6,5 +6,6 @@
         <file>controls/TextField.qml</file>
         <file>controls/CheckBox.qml</file>
         <file>controls/SpinBox.qml</file>
+        <file>viewer/FaceSetViewer.qml</file>
     </qresource>
 </RCC>
